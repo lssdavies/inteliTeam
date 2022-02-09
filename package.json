@@ -1,0 +1,30 @@
+{
+  "name": "inteliteam",
+  "version": "1.0.0",
+  "description": "command line application for generating a team contact page/profile",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lssdavies/inteliTeam.git"
+  },
+  "keywords": [
+    "team",
+    "page",
+    "generator"
+  ],
+  "author": "Larry Davies",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lssdavies/inteliTeam/issues"
+  },
+  "homepage": "https://github.com/lssdavies/inteliTeam#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  }
+}
