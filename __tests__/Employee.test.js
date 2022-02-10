@@ -8,28 +8,29 @@ test("creates an employee object", () => {
   const employee = new Employee();
 
   expect(employee.name).toBe("Dave");
-  expect(employee.id).toEqual(expect.any(Number));
-  expect(employee.email).toEqual(expect.any(String));
-});
-
-//These test will test Employee methods
-test("Gets name via getName()", () => {
-  const employee = new Employee();
-
-  expect(employee.name).toEqual(expect.any(String));
-});
-test("Gets id via getId()", () => {
-  const employee = new Employee();
-
-  expect(employee.id).toBeGreaterThan(0);
-});
-test("Gets email via getEmail()", () => {
-  const employee = new Employee();
-
-  expect(employee.email).toEqual(expect.any(String));
+  expect(employee.id).toBe(1001);
+  expect(employee.email).toBe("test@email.com");
 });
 
 /*Unable to pass object methods for testing getting undefined error*/
+
+//These test will test Employee methods
+// test("Gets name via getName()", () => {
+//   const employee = new Employee();
+
+//   expect(employee.getName()).toBe("Dave");
+// });
+// test("Gets id via getId()", () => {
+//   const employee = new Employee();
+
+//   expect(employee.getId).toBe(1001);
+// });
+// test("Gets email via getEmail()", () => {
+//   const employee = new Employee();
+
+//   expect(employee.getEmail()).toBe(expect.any(String));
+// });
+
 // test("Gets role via getRole()", () => {
 //   const employee = new Employee();
 

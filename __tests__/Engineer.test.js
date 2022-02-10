@@ -10,24 +10,21 @@ test("creates an engineer object", () => {
   const engineer = new Engineer("Dave", "Daveman");
 
   expect(engineer.name).toBe("Dave");
-  expect(engineer.github).toEqual(expect.any(String));
+  expect(engineer.id).toEqual(expect.any(Number));
+  expect(engineer.email).toEqual(expect.any(String));
+  expect(engineer.github).toBe("Daveman");
 });
 
-/*Unable to pass object methods for testing getting undefined error*/
+/*Resolved!!!! was not pass params to new Intern()  Unable to pass object methods for testing getting undefined error*/
 
-// //These test will test Enigineer methods
-// test("Gets github via getGithub()", () => {
-//   const engineer = new Engineer();
+//These test will test Enigineer methods
+test("Gets github via getGithub()", () => {
+  const engineer = new Engineer("Dave", "Daveman");
 
-//   expect(engineer.github).toEqual(expect.any(String));
-// });
-// test("Gets role via getRole()", () => {
-//   const Engineer = new Engineer();
+  expect(engineer.getGithub()).toBe("Daveman");
+});
+test("Gets role via getRole()", () => {
+  const engineer = new Engineer("Dave", "Daveman");
 
-//   expect(engineer.getRole()).toEqual(expect.any(String));
-// });
-// test("Gets github via getGithub()", () => {
-//   const engineer = new Engineer();
-
-//   expect(engineer.getGithub).toEqual(expect.any(String));
-// });
+  expect(engineer.getRole()).toEqual(expect.any(String));
+});
