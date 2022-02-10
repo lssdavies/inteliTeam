@@ -11,14 +11,15 @@ test("creates an engineer object", () => {
 
   expect(engineer.name).toBe("Dave");
   expect(engineer.github).toEqual(expect.any(String));
+
 });
 
-// //These test will test Employee methods
-// test("Gets name via getName()", () => {
-//   const employee = new Employee();
+// //These test will test Enigineer methods
+test("Gets github via getGithub()", () => {
+  const engineer = new Engineer();
 
-//   expect(employee.name).toEqual(expect.any(String));
-// });
+  expect(engineer.github).toEqual(expect.any(String));
+});
 // test("Gets id via getId()", () => {
 //   const employee = new Employee();
 
