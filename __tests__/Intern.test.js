@@ -23,7 +23,13 @@ test("Gets school via getSchool()", () => {
   expect(intern.getSchool()).toEqual(expect.any(String));
 });
 test("Gets role via getRole()", () => {
-  const intern = new Intern("Dave", 1001, "test@email.com", "Princeton");
+  const intern = new Intern(
+    "Dave",
+    1001,
+    "test@email.com",
+    "Princeton",
+    "Intern"
+  );
 
   expect(intern.getRole()).toBe("Intern");
 });

@@ -17,10 +17,10 @@ test("creates an intern object", () => {
 test("Gets office via getStoreId())", () => {
   const manager = new Manager("Dave", 1001, "test@email.com", 5);
 
-  expect(manager.office).toBe(5);
+  expect(manager.getStoreId()).toBe(5);
 });
 test("Gets role via getRole()", () => {
-  const manager = new Manager("Dave", 1001, "test@email.com", 5);
+  const manager = new Manager("Dave", 1001, "test@email.com", 5, "Manager");
 
   expect(manager.getRole()).toBe("Manager");
 });

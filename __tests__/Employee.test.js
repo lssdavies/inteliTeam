@@ -5,7 +5,7 @@ const Employee = require("../lib/Employee");
 
 /*Test function that takes 2 args i.e a descriptive string of the expected result and a call back arrow function. The below test is testing the properties of Employee*/
 test("creates an employee object", () => {
-  const employee = new Employee("Dave", 1001, "test@email.com");
+  const employee = new Employee("Dave", 1001, "test@email.com", "Employee");
 
   expect(employee.name).toBe("Dave");
   expect(employee.id).toBe(1001);
@@ -20,19 +20,19 @@ test("Gets name via getName()", () => {
 
   expect(employee.getName()).toBe("Dave");
 });
-// test("Gets id via getId()", () => {
-//   const employee = new Employee();
+test("Gets id via getId()", () => {
+  const employee = new Employee("Dave", 1001, "test@email.com", "Employee");
 
-//   expect(employee.getId).toBe(1001);
-// });
-// test("Gets email via getEmail()", () => {
-//   const employee = new Employee();
+  expect(employee.getId()).toEqual(1001);
+});
+test("Gets email via getEmail()", () => {
+  const employee = new Employee("Dave", 1001, "test@email.com", "Employee");
 
-//   expect(employee.getEmail()).toBe(expect.any(String));
-// });
+  expect(employee.getEmail()).toBe("test@email.com");
+});
 
-// test("Gets role via getRole()", () => {
-//   const employee = new Employee();
+test("Gets role via getRole()", () => {
+  const employee = new Employee("Dave", 1001, "test@email.com", "Employee");
 
-//   expect(getRole()).toBe("Employee");
-// });
+  expect(employee.getRole()).toBe("Employee");
+});
