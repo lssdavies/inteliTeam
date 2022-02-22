@@ -3,12 +3,35 @@ const fs = require("fs");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const { exit } = require("process");
+const { writeFile, copyFile } = require("./src/generateHTML");
+const { getManagerMarkup, getEngineerMarkup, getInternMarkup, generatePage } = require("./src/pageTemplate");
+// const pageRender = require("./src/pageTemplate");
+
+//have to create a variable to store employeeType object from addEmployee()
+var employeeRole = "";
+
 //creating arrays to store employee questions
 const managerQuestions = [
+  {
+    type: "list",
+    name: "confirmRole",
+    message: "Please confirm your job title",
+    choices: ["Manager", "I am not a manager."],
+  },
   {
     type: "input",
     name: "managerName",
     message: "Enter the team manager's name: ",
+    //confirming the user is a manager, if user is not a manager the programe closes
+    when: ({ confirmRole }) => {
+      if (confirmRole === "Manager") {
+        return true;
+      } else {
+        console.log("Only managers authorized to build teams");
+        exit();
+      }
+    },
     /*adding input validation, requiring the user to input a name with letters and spaces but no numbers. This is done using the regEx(regular expression) method test()*/
     validate: (managerNameInput) => {
       if (nameValidationPattern.test(managerNameInput)) {
@@ -158,10 +181,10 @@ const internQuestions = [
   },
   {
     type: "input",
-    name: "github",
+    name: "school",
     message: "Enter the intern's school name: ",
-    validate: (github) => {
-      if (nameValidationPattern.test(github)) {
+    validate: (school) => {
+      if (nameValidationPattern.test(school)) {
         return true;
       } else {
         return "  Please enter the intern's school name!";
@@ -176,23 +199,53 @@ const idValidationPattern = /^[0-9]+$/;
 const emailValidationPattern =
   /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-//create array to store emplyee data
+//create array to store all employee data and employess based by role
 const employees = [];
 
+
+//Functions to capture employee data
 const captureManagerData = () => {
   return inquirer.prompt(managerQuestions).then((managerData) => {
-    employees.push(managerData);
+    /*Using managerData Objects will be created using the imported object files*/
+    const manager = new Manager(
+      managerData.managerName,
+      managerData.employeeId,
+      managerData.email,
+      managerData.officeId,
+      managerData.confirmRole
+    );
+    employees.push(manager);
+    console.log(managerData);
+    console.log(employees);
   });
 };
-/*functions to capture employee data*/
+/*functions to capture employee data. Passing role from employeeType to build object. Objects will be created using the imported object files*/
 const captureEngineerData = () => {
   return inquirer.prompt(engineerQuestions).then((engineerData) => {
-    employees.push(engineerData);
+    const engineer = new Engineer(
+      engineerData.engineerName,
+      engineerData.employeeId,
+      engineerData.email,
+      engineerData.github,
+      employeeRole
+    );
+    employees.push(engineer);
+    console.log(engineerData);
+    console.log(employees);
   });
 };
 const captureInternData = () => {
   return inquirer.prompt(internQuestions).then((internData) => {
-    employees.push(internData);
+    const intern = new Intern(
+      internData.internName,
+      internData.employeeId,
+      internData.email,
+      internData.school,
+      employeeRole
+    );
+    employees.push(intern);
+    console.log(internData);
+    console.log(employees);
   });
 };
 //function to add employee type
@@ -208,7 +261,9 @@ const addEmployee = () => {
       },
     ])
     .then((employeeType) => {
-    //   console.log(employeeType);
+      //have to create a variable to store employeeType.role to pass to corresponding functions()
+      employeeRole = employeeType.role;
+      console.log(employeeRole);
       /*addEmployee return object employeeType = {role:"Engineer"} so dot notation will be needed to access poroperty*/
       if (employeeType.role === "Engineer") {
         //calling captureEngineerData()
@@ -220,6 +275,10 @@ const addEmployee = () => {
         //console logging the array employees
         console.log(employees);
         console.log("Thank you for adding your employees' information!");
+        /*here we are taking the employee array and passing it to pageRender function which was imported above and return the html content for writeFile()*/
+        writeFile(generatePage(employees));
+        //copies the style sheet for the page.
+        copyFile();
       }
     });
 };

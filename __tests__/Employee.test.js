@@ -32,7 +32,7 @@ test("Gets email via getEmail()", () => {
 });
 
 test("Gets role via getRole()", () => {
-  const employee = new Employee("Dave", 1001, "test@email.com", "Employee");
+  const employee = new Employee("Dave", 1001, "test@email.com");
 
   expect(employee.getRole()).toBe("Employee");
 });
