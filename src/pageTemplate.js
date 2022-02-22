@@ -37,13 +37,12 @@ var interns = [];
 
 //these getMarkup functions work witht he filter() method to get employees by their role and apply the applicable HTML and then pushes the the equivalent html to a specific array
 const getManagerMarkup = (employee) => {
-  managers.push(`<div class="manager">
-        <div class="mangerCard">
+  managers.push(`<div class="mangerCard">
           <div class="mangerheader">
                 <h2 class="cardHeadings">${employee.name}</h2>
-                <h3 class="cardHeadings">${employee.role}</h3>
           </div>
             <div class="card-body">
+            <h3>${employee.role}</h3>
                 <p> Employee Id: ${employee.id}</p>
                 <p>Email: <a href="mailto:${employee.email}">${employee.email}</a></p>
                 <p>Store Id: ${employee.office}</p>
@@ -59,9 +58,9 @@ const getEngineerMarkup = (employee) => {
         <div class="engineerCard">
           <div class="engineerheader">
                 <h2 class="cardHeadings">${employee.name}</h2>
-                <h3 class="cardHeadings">${employee.role}</h3>
           </div>
             <div class="card-body">
+            <h3>${employee.role}</h3>
                 <p> Employee Id: ${employee.id}</p>
                 <p>Email: <a href="mailto:${employee.email}">${employee.email}</a></p>
                 <p>Github: <a href="https://github.com/${employee.github}" target="_blank" rel="noopener noreferrer"> ${employee.github}</a> </p>
@@ -70,7 +69,7 @@ const getEngineerMarkup = (employee) => {
         </div>
         `);
   } else {
-    engineers.push(`<div class="engineer">
+    engineers.push(`<div class="engineerCard">
         <div class="engineerheader">
                 <h2 class="cardHeadings">There are currently no Engineers on this team</h2>
         </div>
@@ -83,9 +82,9 @@ const getInternMarkup = (employee) => {
     interns.push(`<div class="internCard">
           <div class="internheader">
                 <h2 class="cardHeadings">${employee.name}</h2>
-                <h3 class="cardHeadings">${employee.role}</h3>
           </div>
             <div class="card-body">
+                <h3>${employee.role}</h3>
                 <p> Employee Id: ${employee.id}</p>
                 <p>Email: <a href="mailto:${employee.email}">${employee.email}</a></p>
                 <p>College: ${employee.school}</p>
@@ -131,15 +130,9 @@ const generatePage = (pageData) => {
             <h1>My Team</h1>
         </header>
         <section class="sectionContainer">
-            <div class="engineer">
             ${managers}
-            </div>
-            <div class="engineer">
             ${engineers}
-            </div>
-            <div class="intern">
             ${interns}
-            </div>
         </section>
         <footer>
             <h4> Powered by inteliTeam&copy;</h4>
