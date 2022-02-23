@@ -4,7 +4,7 @@
 
 ## Description
 
-InteliTeam is a command line application that allows managers to create team pages with a listing of all their employess and quick access to their emails and GitHub Profile.
+InteliTeam is a command line application that allows managers to create team pages with a listing of all their employess and quick access to their emails and GitHub Profiles.
 I was motivated to create this app to provide a simple solution for a manager to be able to access employee data in a centralized location without having to use complicated HR software.
 
 ## Technologies Used
